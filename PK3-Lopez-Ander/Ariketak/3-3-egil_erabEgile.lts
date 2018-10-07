@@ -1,0 +1,16 @@
+//Ander Lopez
+//27/09/2018
+//3) ERAB_BALIAB adibidean, gehitu EGILE prozesu bat, "egin" egiten duena,
+//a edo b ERABiltzaileek "erabili" aurretik.
+
+range Bool = 0..2
+
+ERAB 		= (eskuratu -> erabili -> askatu -> ERAB).
+EGILE		= (egin 	-> EGILE).
+
+BALIAB = BALIAB[0],
+BALIAB[i:Bool] = ( when (i==0)           egin -> BALIAB[1]
+				 | when (i==1) {a,b}.eskuratu -> BALIAB[2]
+				 | when (i==2) {a,b}.askatu   -> BALIAB[0]).
+
+||ERAB_BALIAB = ( EGILE || {a,b}:ERAB || BALIAB).

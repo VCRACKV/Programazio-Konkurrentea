@@ -1,0 +1,18 @@
+//Ander Lopez
+//27/09/2018
+//1) EGIL_ERAB3 adibidean, gehitu BOTATZAILE prozesu bat, “erabili” ekintza
+//egin ondoren "bota" egiten duena.
+
+const N = 2
+range R = 0..N
+
+EGIL = (egin -> EGIL).
+ERAB = (erabili -> ERAB).
+BOTA = (bota -> BOTA).
+
+KONTA = KONTA[0],
+KONTA[i:R] = ( when (i==0) egin -> KONTA[1] 
+			 | when (i==1) erabili -> KONTA[2]
+			 | when (i==2) bota -> KONTA[0]).
+
+||EGIL_ERAB3 = (EGIL || ERAB || BOTA || KONTA).

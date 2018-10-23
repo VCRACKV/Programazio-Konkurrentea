@@ -1,0 +1,7 @@
+const N = 9
+range R = 0..N
+ARK26 	   = ARK26[5],
+ARK26[i:R] = ( when(i<2) gutxi[i]       -> (when(i<N) igo -> ARK26[i+1] | when(i>0) jetsi -> ARK26[i-1])
+			 | when(i>8) asko[i]        -> (when(i<N) igo -> ARK26[i+1] | when(i>0) jetsi -> ARK26[i-1])		
+			 | when(i>=2 & i<9) ongi[i] -> (when(i<N) igo -> ARK26[i+1] | when(i>0) jetsi -> ARK26[i-1])).
+

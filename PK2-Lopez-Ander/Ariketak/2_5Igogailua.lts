@@ -1,0 +1,5 @@
+const N    = 6
+range R    = 1..N
+ARK25 	   = ARK25[4],
+ARK25[i:R] = (non[i] -> ( when(i>1) behera -> ARK25[i-1] 
+					    | when(i<N) gora -> ARK25[i+1])).

@@ -1,0 +1,5 @@
+const N = 3
+range R = 0..N
+ARK24 	= (in[x:R][y:R] ->
+		   if (x>y) then (max[x] -> ARK24)
+		  		    else (max[y] -> ARK24) ).

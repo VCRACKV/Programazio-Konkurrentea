@@ -1,0 +1,3 @@
+const N1 = 3
+range R1 = 1..N1
+BIKOITZA = (in[i:R1] -> out[i*2] -> BIKOITZA).

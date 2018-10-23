@@ -1,0 +1,10 @@
+const N = 35
+range R = 0..N
+ARK27 = ([5]  -> BUELTA[5]
+		|[10] -> BUELTA[10]
+		|[20] -> BUELTA[20]),
+
+BUELTA[i:R] = (when (i<15)  [5]  -> BUELTA[i+5]
+			  |when (i<15)  [10] -> BUELTA[i+10]
+		  	  |when (i<15)  [20] -> BUELTA[i+20]
+			  |when (i>=15) lata -> bueltak[i-15] -> ARK27).

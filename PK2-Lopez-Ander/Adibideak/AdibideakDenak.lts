@@ -1,0 +1,66 @@
+PROZESUA = (piztu -> itzali -> PROZESUA).
+
+BEHINEGIN = (behin -> STOP).
+
+ETENGAILUA1 = OFF1,
+OFF1 = (on -> ON1),
+ON1 = (off -> OFF1).
+
+ETENGAILUA2 = OFF2,
+OFF2 = (on ->(off->OFF2)).
+
+ETENGAILUA3 = (on -> off -> ETENGAILUA3).
+
+SEMAFOROA = (gorria -> laranja -> berdea -> laranja -> SEMAFOROA).
+
+EDARIAK = (gorria -> kafea -> EDARIAK | urdina -> tea -> EDARIAK).
+
+LEONKASTILLO1 = (bota -> LEON1 | bota -> KASTILLO1),
+LEON1 = (leon -> LEONKASTILLO1),
+KASTILLO1 = ( kastillo -> LEONKASTILLO1).
+
+LEONKASTILLO2 = (bota -> leon -> LEONKASTILLO2 | bota -> kastillo -> LEONKASTILLO2).
+
+LEONKASTILLO3 = (bota -> {leon, kastillo} -> LEONKASTILLO3).
+
+KANALA = (in -> KANALA | in ->out->KANALA).
+
+ATEA1 = (ireki -> ATEA1 | itxi -> ATEA1).
+
+ATEA2 = ({ireki, itxi} -> ATEA2).
+
+BUFF1 = (in[i:0..3] -> out[i]->BUFF1).
+
+BUFF2 = (in[0] -> out[0] -> BUFF2 | in[1] -> out[1] ->BUFF2 | in[2] -> out[2] ->BUFF2 | in[3] -> out[3] ->BUFF2).
+
+BUFF3(N1=3) = (in[i:0..N1] -> out[i] -> BUFF3).
+
+const N2=3
+range R1=0..N2
+BUFF4 = (in[i:R1] -> out[i] ->BUFF4).
+
+const N3=1
+range T=0..N3
+range R2=0..2*N3
+BATURA1 = (in[a:T][b:T]->GUZTIRA[a+b]),
+GUZTIRA[s:R2] = (out[s] -> BATURA1).
+
+BATURA2 = (in[a:T][b:T] -> out[a+b] -> BATURA2).
+
+const N4=3
+range R3=0..N4
+MAILA = (maila[x:R3] -> if(x>=2) then(altua -> MAILA) else(baxua -> MAILA)).
+
+
+const N5=3
+range R4=0..N5
+KONT = KONT[0],
+KONT[i:R4] = (when (i<N5) gehi->KONT[i+1] | when (i>0) ken -> KONT[i-1]).
+
+const N6=3
+range R5=0..N6
+KRONO = (hasi -> KRONO[N6]),
+KRONO[i:R5] = (when(i>0) tik -> KRONO[i-1] | when(i==0) alarma -> STOP).
+
+
+

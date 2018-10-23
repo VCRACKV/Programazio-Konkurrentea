@@ -1,0 +1,16 @@
+
+const IL=5      //ILARAKO KOP MAXIMOA +1 izango litzateke
+const PK=8      //PERTSONA KOPURUA ILARAN SARTU NAHI DUTENAK
+range IR=0..IL  //ILARAK EDUKI DITZAKEEN RANGOA
+range PR=1..PK  //PERTSONA KOPURUEN RANGOA 
+
+PERTSONA = (sartu[x:IR] -> irten[x] -> PERTSONA).
+
+//s, sartutako indizea
+//i, irtendako indizea s-ren berdina izan beharko duena
+//k, momentuan ilara noraino betea dagoen jakiteko
+ILARA 			        = ILARA[0][0][0],
+ILARA[s:IR][i:IR][k:IR] = (when (k<IL)        sartu[s] -> ILARA[(s+1)%IL][i][k+1]
+			        	  |                   irten[i] -> ILARA[s][(i+1)%IL][k-1]).
+
+||FIFO = (p[PR]:PERTSONA || p[PR]::ILARA).

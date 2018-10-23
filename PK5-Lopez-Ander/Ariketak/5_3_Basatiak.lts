@@ -1,0 +1,37 @@
+/*Ander Lopez
+ * 11/10/2018
+ * 3. Basatien festa, baina orain
+sukaldariak hainbat puska bota, eta
+basatiek hainbat puska hartu, eta
+bota edo hartu aurretik,
+lapikoan zenbat dagoen begiratzen dute
+ */
+
+const PK = 3       // Puska kopuru maximoa
+range PR = 0..PK   // Lapikoan egon daitekeen puska kopuruaren rangoa
+range SPR = 1..PK  // Sukaldariak bota dezakeen puska kopuruaren rangoa
+const BK = 2       // Basati kopurua
+range BR = 1..BK   // Basatien rangoa
+range BL = 0..1    // 0kin basatiak begiratu dezake 1 ekin ez
+//k lapikoan momentuan dagoen puska kopurua
+//r basatiak lapikotik hartutako puska kopurua
+BASATIA = (begiratu[k:PR]->
+				if(k>0) then( random[r:1..k]->hartu[r]-> jan -> lo ->	BASATIA)
+						else                   (askatu->BASATIA)
+			).
+//k lapikoan momentuan dagoen puska kopurua
+//r sukaldariak lapikora botatako puska kopurua
+SUKALDARIA = (begiratu[k:PR]->
+				if (k<PK) then (random[r:1..PK-k]-> bota[r] ->SUKALDARIA)
+						  else                       (askatu->SUKALDARIA)
+			).
+
+//i momentuan lapikoan dagoen puska kopurua
+//blok basati edo sukaldaria lapikoa begiratu duen jakiteko
+LAPIKOA = LAPIKOA[0][0],
+LAPIKOA[i:PR][blok:BL] = ( when(i<PK)          s.bota[b:1..PK-i]     -> LAPIKOA[i+b][0]
+						 | when(i>0)           b[BR].hartu[h:1..i]   -> LAPIKOA[i-h][0]
+					     | when(blok==0)	   {s,b[BR]}.begiratu[i] -> LAPIKOA[i][1]
+						 |                     askatu		         -> LAPIKOA[i][0]). 
+			
+||JANARIA = (b[BR]:BASATIA || s:SUKALDARIA || LAPIKOA).

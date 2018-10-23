@@ -1,0 +1,22 @@
+/*Ander Lopez
+ * 11/10/2018
+ * 2. Basatien festa, baina orain sukaldariak
+aldi bakoitzean 3 puska botatzen ditu
+(eta lapikoan 3 puska baino gehiago sartzen dira).
+ */
+
+const Basatiak = 3     //Basati kopuru maximoa
+const Puskak = 5	   //Puska kopuru maximoa
+range PK = 0..Puskak   //Egon daitekeen puska kopurua
+range BS = 1..Basatiak //Egon daitekeen basati kopurua
+
+BASATIA = (hartu -> jan -> lo ->BASATIA).
+
+SUKALDARIA = (bota -> SUKALDARIA).
+//i lapikoan momentu oro dagoen puska kopurua
+LAPIKO = LAPIKO[0],
+LAPIKO[i:PK] = (when (i>0)          b[BS].hartu -> LAPIKO[i-1]
+			   |when (i<Puskak-2)   s.bota      -> LAPIKO[i+3]). 
+
+
+||BAS_IRLA = ( b[BS]:BASATIA || s:SUKALDARIA || LAPIKO ).

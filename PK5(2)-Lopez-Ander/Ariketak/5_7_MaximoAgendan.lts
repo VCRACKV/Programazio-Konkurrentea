@@ -1,0 +1,15 @@
+const AT = 7
+const P = 3
+range ATK = 0..AT-1
+range PK = 1..P
+range HA = 1..AT-1
+range UT = 0.. AT-2
+
+PERTSONA=(hartu[h:HA][h-1] -> konparatu -> utzi[u:UT] -> PERTSONA).
+
+AGENDA = AGENDA[AT-1],
+AGENDA[i:ATK] = (when(i>0)   hartu[i][i-1] -> AGENDA[i-2]
+				|when(i<AT-1) utzi[i+1]     -> if(i<0) then(emaitza-> STOP)
+											   else AGENDA[i+1]).	
+
+||MAXIMOAGENDA = (p[PK]:PERTSONA || p[PK]::AGENDA).

@@ -1,0 +1,19 @@
+/*Ander Lopez
+ * 11/10/2018
+ * 5*. Hainbat prozesu sinkronizatzen dira
+denek batera ekintza jakin bat egiteko.
+*/
+
+const N=3     //Ataza kopurua
+const M=3     //PERTSONA KOPURUA
+range R=0..N  //DIRU KOPURUAK EDUKI DITZAKEEN BALIOAK
+range P=1..M  //EGON DAITEKEEN IKASLE KOPURUA
+PERTSONA = (iritsi -> egin -> irten -> PERTSONA).
+
+KONTROL = KONTROL[0][0][0],
+KONTROL[i:R][e:R][ir:R] = (when (i<N)  				   iritsi -> KONTROL[i+1][e][ir]
+		      			  |when (i==N && e<N)   	    egin  -> KONTROL[i][e+1][ir]
+			   			  |when (i==N && e==N && ir<N)  irten -> KONTROL[i][e][ir+1]
+						  |when (ir==N-1)                 irten -> KONTROL[0][0][0]).
+
+||IREGIR=(p[P]:PERTSONA || p[P]::KONTROL).

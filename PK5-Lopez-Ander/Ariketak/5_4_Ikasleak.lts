@@ -1,0 +1,33 @@
+/*Ander Lopez
+ * 11/10/2018
+ * 4. Ikasle jator batzuen pisuan gastuetarako bote bat dute.
+Norberak ahal duen heinean botean dirua sartzen du,
+eta behar duen neurrian hartu.
+ */
+const BM = 3 	 //BOTE MAXIMOA
+const PK = 2 	 //PERTSONA MAXIMOA
+range BO = 0..BM //BOTEAK EDUKI DITZAKEN BALIOAK
+range PE = 1..PK //EGON DAITEKEEN PERTSONA KOP
+range BL = 0..1  //0 begiratu dezake 1 ekin ya begiratua izan da
+
+//r hartzera edo begiratzera doan jakiteko
+//kh botean zenbat diru ikusi duen jakiteko
+//h botetik zenbat diru hartu duen jakiteko
+//kb botean zenbat diru dagoen ikusteko
+//b botera zenbat diru bota duen jakiteko
+PERTSONA = (aukera[r:0..1]-> if(r==0) then (hartzera -> begiratu[kh:BO]->
+							 		if(kh>0) then (harand[h:1..kh] -> hartu[h] -> askatu ->PERTSONA)
+									else                                      (askatu -> PERTSONA))
+							 else ( botatzera ->    begiratu[kb:BO]->
+							 		if(kb<BM) then (botram[b:1..BM-kb] -> bota[b] -> askatu -> PERTSONA)
+									else                                          (askatu -> PERTSONA))).
+
+//i botean zenbat diru dagoen jakiteko
+//blok ikasleren batek botean dagoen dirua begiratu duen jakiteko
+BOTEA = BOTEA[0][0],
+BOTEA[i:BO][blok:BL] = ( when (i<BM)    p[PE].bota[b:1..BM-i] -> BOTEA[i+b][0]
+ 					   | when (i>0)     p[PE].hartu[h:1..i]   -> BOTEA[i-h][0]
+					   | when (blok==0) p[PE].begiratu[i]	  -> BOTEA[i][1]
+					   |                p[PE].askatu          -> BOTEA[i][0]).
+
+||BOTEIKASLE = (p[PE]: PERTSONA || BOTEA).					
